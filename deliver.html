@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Order App</title>
+
+<style>
+    body {
+        font-family: Arial;
+        background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .card {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        width: 320px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        text-align: center;
+    }
+
+    h2 {
+        margin-bottom: 15px;
+    }
+
+    input {
+        width: 90%;
+        padding: 10px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+
+    button {
+        background: #6c5ce7;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        margin-top: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #4b3fd1;
+    }
+
+    #output {
+        margin-top: 15px;
+        font-size: 14px;
+        text-align: left;
+        background: #f4f4f4;
+        padding: 10px;
+        border-radius: 8px;
+        height: 120px;
+        overflow-y: auto;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>🍔 Food Order System</h2>
+
+    <input id="order" placeholder="Enter order (pizza, burger)">
+    <input id="time" placeholder="Enter time (seconds)">
+
+    <button onclick="startOrder()">Place Order</button>
+
+    <div id="output"></div>
+</div>
+
+<script>
+
+function log(msg){
+    document.getElementById("output").innerHTML += msg + "<br>"
+}
+
+function setorder(time, order, callback){
+
+    log("Order selected: " + order)
+    log("Checking time: " + time + " sec")
+
+    setTimeout(()=>{
+
+        log("Time checked")
+
+        if(time <= 44){
+            log("❌ Cannot deliver your order")
+        } else {
+            log("✅ Your " + order + " will arrive in " + time + " seconds")
+        }
+
+        callback()
+
+    }, 2000)
+}
+
+function startOrder(){
+
+    let order = document.getElementById("order").value
+    let time = document.getElementById("time").value
+
+    setorder(time, order, function(){
+        log("🎉 Order process completed")
+    })
+}
+
+</script>
+
+</body>
+</html>
